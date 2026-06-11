@@ -14,6 +14,7 @@ import Scripts from '@/components/Scripts'
 
 const Ackee = dynamic(() => import('@/components/Ackee'), { ssr: false })
 const Gtag = dynamic(() => import('@/components/Gtag'), { ssr: false })
+const SpeedInsights = dynamic(() => import('@vercel/speed-insights/next').then(mod => mod.SpeedInsights), { ssr: false })
 
 export default function MyApp ({ Component, pageProps, config, locale }) {
   return (
@@ -30,6 +31,7 @@ export default function MyApp ({ Component, pageProps, config, locale }) {
             )}
             {process.env.VERCEL_ENV === 'production' && config?.analytics?.provider === 'ga' && <Gtag />}
             <Component {...pageProps} />
+            <SpeedInsights />
           </>
         </ThemeProvider>
       </LocaleProvider>
